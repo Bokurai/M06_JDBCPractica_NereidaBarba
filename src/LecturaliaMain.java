@@ -1,9 +1,10 @@
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class LecturaliaMain {
 
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
         ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
         Connection c = connectionFactory.connect();
         LecturaliaMenu lecturaliaMenu = new LecturaliaMenu();
@@ -15,10 +16,13 @@ public class LecturaliaMain {
         while (op > 0 && op < 12){
             switch (op) {
                 case 1:
+                    libroController.mostrarLibros();
                     break;
                 case 2:
+                    libroController.mostrarLibrosPorAutor();
                     break;
                 case 3:
+                    temaController.mostrarLibrosPorTema();
                     break;
                 case 4:
                     break;

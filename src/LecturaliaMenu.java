@@ -21,7 +21,7 @@ public class LecturaliaMenu {
             System.out.println("1. Mostrar todos los libros");
             System.out.println("2. Mostrar libros de un autor en concreto");
             System.out.println("3. Mostrar libros pertenecientes a un tema");
-            System.out.println("4. Mostrar libros con varios autores");
+            System.out.println("4. Mostrar libros con autor y tema concretos");
             System.out.println("˚ ༘ ⋆｡MODIFICACIÓN/ELIMINACIÓN˚ ༘ ⋆｡");
             System.out.println("5. Escoger un libro y modificar su información");
             System.out.println("6. Escoger varios libros y modificar su información");

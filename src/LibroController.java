@@ -15,8 +15,31 @@ public class LibroController {
 
     public void mostrarLibros() throws SQLException, NumberFormatException{
        Statement statement = connection.createStatement();
-       ResultSet resultSet = statement.executeQuery("SELECT * FROM Libros");
+       ResultSet resultSet;
+
+       resultSet = statement.executeQuery("SELECT * FROM Libros");
+       while(resultSet.next()){
+
+       }
+
+       statement.close();
+       resultSet.close();
     }
 
+    public void mostrarLibrosPorAutor() throws SQLException, NumberFormatException, IOException{
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        Statement statement = connection.createStatement();
+        ResultSet resultSet;
 
+        System.out.println("Por favor escriba correctamente el nombre del autor");
+        String nombreautor = bufferedReader.readLine();
+
+        resultSet = statement.executeQuery("SELECT * FROM Libros WHERE autor LIKE '" + nombreautor + "'");
+        while(resultSet.next()){
+            System.out.println("Nombre: " + resultSet.getString(1) + " " + resultSet.getString(3) + "Resumen: " + resultSet.getString(4));
+        }
+
+        statement.close();
+        resultSet.close();
+    }
 }
