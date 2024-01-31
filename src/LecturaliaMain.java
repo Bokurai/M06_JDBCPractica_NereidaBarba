@@ -1,13 +1,15 @@
 import java.sql.Connection;
+import java.sql.SQLException;
 
 public class LecturaliaMain {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
         Connection c = connectionFactory.connect();
         LecturaliaMenu lecturaliaMenu = new LecturaliaMenu();
-        LibroController libroController = new LibroController();
-        TemaController temaController = new TemaController();
+        LibroController libroController = new LibroController(c);
+        TemaController temaController = new TemaController(c);
+        DBController dbController = new DBController(c);
 
         int op = lecturaliaMenu.menuPrincipal();
         while (op > 0 && op < 12){

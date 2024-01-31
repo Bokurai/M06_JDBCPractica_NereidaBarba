@@ -1,9 +1,10 @@
 import java.sql.Connection;
 
-public class TemaController {
+public class DBController {
+
     private Connection connection;
 
-    public TemaController(Connection connection){
+    public DBController(Connection connection){
         this.connection = connection;
     }
 }
