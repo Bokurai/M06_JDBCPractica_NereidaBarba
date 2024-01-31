@@ -7,4 +7,10 @@ public class DBController {
     public DBController(Connection connection){
         this.connection = connection;
     }
+
+    public void escribirTablas() {
+    }
+
+    public void restablecerBase() {
+    }
 }

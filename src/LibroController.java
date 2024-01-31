@@ -42,4 +42,20 @@ public class LibroController {
         statement.close();
         resultSet.close();
     }
+
+    public void modificarLibro() throws SQLException,NumberFormatException, IOException{
+
+    }
+
+    public void modificarLibros() throws SQLException,NumberFormatException, IOException{
+
+    }
+
+    public void eliminarLibro() throws SQLException,NumberFormatException, IOException{
+
+    }
+
+    public void eliminarLibros() throws SQLException,NumberFormatException, IOException{
+
+    }
 }

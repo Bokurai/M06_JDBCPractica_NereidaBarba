@@ -25,20 +25,28 @@ public class LecturaliaMain {
                     temaController.mostrarLibrosPorTema();
                     break;
                 case 4:
+                    temaController.librosTemaAutor();
                     break;
                 case 5:
+                    temaController.mostrarTemas();
                     break;
                 case 6:
+                    libroController.modificarLibro();
                     break;
                 case 7:
+                    libroController.modificarLibros();
                     break;
                 case 8:
+                    libroController.eliminarLibro();
                     break;
                 case 9:
+                    libroController.eliminarLibros();
                     break;
                 case 10:
+                    dbController.escribirTablas();
                     break;
                 case 11:
+                    dbController.restablecerBase();
                     break;
             }
 
