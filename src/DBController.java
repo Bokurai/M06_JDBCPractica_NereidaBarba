@@ -8,9 +8,12 @@ public class DBController {
         this.connection = connection;
     }
 
-    public void escribirTablas() {
+    public void borrarTablas() {
     }
 
-    public void restablecerBase() {
+    public void crearTablas() {
+    }
+
+    public void poblarTablas() {
     }
 }

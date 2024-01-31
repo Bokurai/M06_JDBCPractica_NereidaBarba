@@ -24,10 +24,4 @@ public class TemaController {
         System.out.println("Mostrando temas disponibles...");
     }
 
-
-    public void librosTemaAutor()throws SQLException, NumberFormatException, IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        Statement statement = connection.createStatement();
-        System.out.println("Mostrando temas disponibles...");
-    }
 }

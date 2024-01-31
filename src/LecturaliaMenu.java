@@ -21,17 +21,15 @@ public class LecturaliaMenu {
             System.out.println("1. Mostrar todos los libros");
             System.out.println("2. Mostrar libros de un autor en concreto");
             System.out.println("3. Mostrar libros pertenecientes a un tema");
-            System.out.println("4. Mostrar libros con autor y tema concretos");
-            System.out.println("5. Mostrar todos los temas disponibles");
+            System.out.println("4. Mostrar todos los temas disponibles");
             System.out.println("˚ ༘ ⋆｡MODIFICACIÓN/ELIMINACIÓN˚ ༘ ⋆｡");
-            System.out.println("6. Escoger un libro y modificar su información");
-            System.out.println("7. Escoger varios libros y modificar su información");
-            System.out.println("8. Eliminar información de un libro");
-            System.out.println("9. Eliminar información de varios libros");
+            System.out.println("5. Escoger un libro y modificar su información");
+            System.out.println("6. Eliminar información de un libro");
             System.out.println("˚ ༘ ⋆｡RESTABLECIMIENTO˚ ༘ ⋆｡");
-            System.out.println("10. Reiniciar tablas de la base de datos(Borrar y crear)");
-            System.out.println("11. Rellenar las tablas con datos");
-            System.out.println("12. Salir");
+            System.out.println("7. Borrar tablas de la Biblioteca Digital");
+            System.out.println("8. Crear tablas de la Biblioteca Digital");
+            System.out.println("9. Poblar las tablas con datos");
+            System.out.println("10. Salir");
             try {
                 op = Integer.parseInt(lector.readLine());
             } catch (IOException e) {

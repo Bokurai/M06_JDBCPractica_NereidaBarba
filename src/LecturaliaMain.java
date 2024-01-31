@@ -13,7 +13,7 @@ public class LecturaliaMain {
         DBController dbController = new DBController(c);
 
         int op = lecturaliaMenu.menuPrincipal();
-        while (op > 0 && op < 12){
+        while (op > 0 && op < 13){
             switch (op) {
                 case 1:
                     libroController.mostrarLibros();
@@ -25,31 +25,32 @@ public class LecturaliaMain {
                     temaController.mostrarLibrosPorTema();
                     break;
                 case 4:
-                    temaController.librosTemaAutor();
-                    break;
-                case 5:
                     temaController.mostrarTemas();
                     break;
-                case 6:
+                case 5:
                     libroController.modificarLibro();
                     break;
-                case 7:
+                case 6:
                     libroController.modificarLibros();
                     break;
-                case 8:
+                case 7:
                     libroController.eliminarLibro();
                     break;
-                case 9:
+                case 8:
                     libroController.eliminarLibros();
                     break;
+                case 9:
+                    dbController.borrarTablas();
+                    break;
                 case 10:
-                    dbController.escribirTablas();
+                    dbController.crearTablas();
                     break;
                 case 11:
-                    dbController.restablecerBase();
+                    dbController.poblarTablas();
                     break;
+                case 12:
+                   break;
             }
-
             op = lecturaliaMenu.menuPrincipal();
 
         }
