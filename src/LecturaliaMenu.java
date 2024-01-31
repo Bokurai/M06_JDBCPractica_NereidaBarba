@@ -29,7 +29,7 @@ public class LecturaliaMenu {
             System.out.println("8. Eliminar información de un libro");
             System.out.println("9. Eliminar información de varios libros");
             System.out.println("˚ ༘ ⋆｡RESTABLECIMIENTO˚ ༘ ⋆｡");
-            System.out.println("10. Reiniciar tablas de la base de datos");
+            System.out.println("10. Reiniciar tablas de la base de datos(Borrar y crear)");
             System.out.println("11. Rellenar las tablas con datos");
             System.out.println("12. Salir");
             try {
