@@ -14,7 +14,7 @@ public class TemaController {
     }
 
 
-    public void mostrarTemas()throws SQLException, NumberFormatException,{
+    public void mostrarTemas()throws SQLException, NumberFormatException{
         Statement statement = connection.createStatement();
         ResultSet resultSet;
 

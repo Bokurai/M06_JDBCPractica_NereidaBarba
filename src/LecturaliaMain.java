@@ -1,10 +1,12 @@
+import com.opencsv.exceptions.CsvValidationException;
+
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 
 public class LecturaliaMain {
 
-    public static void main(String[] args) throws SQLException, IOException {
+    public static void main(String[] args) throws SQLException, IOException, CsvValidationException {
         ConnectionFactory connectionFactory = ConnectionFactory.getInstance();
         Connection c = connectionFactory.connect();
         LecturaliaMenu lecturaliaMenu = new LecturaliaMenu();
@@ -18,40 +20,44 @@ public class LecturaliaMain {
                 case 1:
                     libroController.mostrarLibros();
                     break;
+
                 case 2:
                     libroController.mostrarLibrosPorAutor();
                     break;
+
                 case 3:
                     temaController.mostrarLibrosPorTema();
                     break;
+
                 case 4:
                     temaController.mostrarTemas();
                     break;
+
                 case 5:
                     libroController.modificarLibro();
                     break;
+
                 case 6:
-                    libroController.modificarLibros();
-                    break;
-                case 7:
                     libroController.eliminarLibro();
                     break;
-                case 8:
-                    libroController.eliminarLibros();
-                    break;
-                case 9:
-                    dbController.borrarTablas();
 
+                case 7:
+                    dbController.borrarTablas();
                     break;
-                case 10:
+
+                case 8:
                     dbController.crearTablaLibros();
                     dbController.crearTablaTemas();
                     break;
-                case 11:
-                    dbController.poblarTablas();
+
+                case 9:
+                    dbController.poblarTablaTemas();
+                    dbController.poblarTablaLibros();
                     break;
-                case 12:
-                   break;
+
+                case 10:
+                    break;
+
             }
             op = lecturaliaMenu.menuPrincipal();
 
