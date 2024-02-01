@@ -41,9 +41,11 @@ public class LecturaliaMain {
                     break;
                 case 9:
                     dbController.borrarTablas();
+
                     break;
                 case 10:
-                    dbController.crearTablas();
+                    dbController.crearTablaLibros();
+                    dbController.crearTablaTemas();
                     break;
                 case 11:
                     dbController.poblarTablas();
