@@ -6,14 +6,27 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Clase que gestiona las operaciones relacionadas con los temas en la base de datos.
+ */
 public class TemaController {
-    private Connection connection;
+    private final Connection connection;
 
+    /**
+     * Constructor de la clase TemaController.
+     *
+     * @param connection La conexión a la base de datos.
+     */
     public TemaController(Connection connection){
         this.connection = connection;
     }
 
-
+    /**
+     * Muestra todos los temas disponibles en la base de datos.
+     *
+     * @throws SQLException          Si ocurre un error al ejecutar la consulta SQL.
+     * @throws NumberFormatException Si ocurre un error al convertir datos.
+     */
     public void mostrarTemas()throws SQLException, NumberFormatException{
         Statement statement = connection.createStatement();
         ResultSet resultSet;
@@ -24,6 +37,13 @@ public class TemaController {
         resultSet.close();
     }
 
+    /**
+     * Muestra los libros asociados a un tema literario específico.
+     *
+     * @throws SQLException          Si ocurre un error al ejecutar la consulta SQL.
+     * @throws NumberFormatException Si ocurre un error al convertir datos.
+     * @throws IOException           Si ocurre un error de entrada/salida.
+     */
     public void mostrarLibrosPorTema() throws SQLException, NumberFormatException, IOException{
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Statement statement = connection.createStatement();

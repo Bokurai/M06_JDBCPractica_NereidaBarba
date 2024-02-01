@@ -1,0 +1,1 @@
+typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"<Unnamed>","l":"ConnectionFactory"},{"p":"<Unnamed>","l":"DBController"},{"p":"<Unnamed>","l":"LecturaliaMain"},{"p":"<Unnamed>","l":"LecturaliaMenu"},{"p":"<Unnamed>","l":"LibroController"},{"p":"<Unnamed>","l":"TemaController"}];updateSearchResults();

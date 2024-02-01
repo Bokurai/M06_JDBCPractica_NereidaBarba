@@ -3,14 +3,25 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.Buffer;
 
+/**
+ * Clase que representa el menú de la Biblioteca Digital de Lecturalia.
+ */
 public class LecturaliaMenu {
 
     private int op;
 
+    /**
+     * Constructor de la clase LecturaliaMenu.
+     */
     public LecturaliaMenu(){
         super();
     }
 
+    /**
+     * Muestra el menú principal y devuelve la opción seleccionada por el usuario.
+     *
+     * @return La opción seleccionada por el usuario.
+     */
     public int menuPrincipal(){
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
 

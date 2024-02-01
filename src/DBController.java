@@ -8,14 +8,27 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Clase que gestiona operaciones relacionadas con la base de datos.
+ */
 public class DBController {
 
-    private Connection connection;
+    private final Connection connection;
 
+    /**
+     * Constructor de la clase DBController.
+     *
+     * @param connection La conexión a la base de datos.
+     */
     public DBController(Connection connection) {
         this.connection = connection;
     }
 
+    /**
+     * Borra las tablas de la base de datos.
+     *
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
     public void borrarTablas() throws SQLException {
         Statement statement = connection.createStatement();
 
@@ -30,6 +43,11 @@ public class DBController {
         statement.close();
     }
 
+    /**
+     * Crea la tabla Libros en la base de datos si no existe antes.
+     *
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
     public void crearTablaLibros() throws SQLException {
         String orden = "CREATE TABLE IF NOT EXISTS Libros (\n" +
                 "    id SERIAL PRIMARY KEY,\n" +
@@ -49,6 +67,11 @@ public class DBController {
         statement.close();
     }
 
+    /**
+     * Crea la tabla Temas en la base de datos.
+     *
+     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     */
     public void crearTablaTemas() throws SQLException {
         String orden = "CREATE TABLE IF NOT EXISTS Temas (\n" +
                 "    nombre_tema VARCHAR(255) PRIMARY KEY\n" +
@@ -62,7 +85,13 @@ public class DBController {
         statement.close();
     }
 
-
+    /**
+     * Puebla la tabla Libros con datos desde un archivo CSV.
+     *
+     * @throws SQLException         Si ocurre un error al ejecutar la consulta SQL.
+     * @throws CsvValidationException Si ocurre un error al validar el archivo CSV.
+     * @throws IOException          Si ocurre un error de entrada/salida.
+     */
     public void poblarTablaLibros() throws SQLException, CsvValidationException, IOException {
         CSVReader csvR = new CSVReader(new FileReader("resources/temas_y_libros.csv"));
 
@@ -93,6 +122,13 @@ public class DBController {
         preparedStatement.close();
     }
 
+    /**
+     * Puebla la tabla Temas con datos desde un archivo CSV.
+     *
+     * @throws SQLException         Si ocurre un error al ejecutar la consulta SQL.
+     * @throws CsvValidationException Si ocurre un error al validar el archivo CSV.
+     * @throws IOException          Si ocurre un error de entrada/salida.
+     */
     public void poblarTablaTemas() throws CsvValidationException, IOException, SQLException {
         CSVReader csvR = new CSVReader(new FileReader("resources/temas_y_libros.csv"));
 

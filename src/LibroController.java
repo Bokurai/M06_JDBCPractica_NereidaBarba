@@ -1,18 +1,30 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.nio.Buffer;
 import java.sql.*;
-import java.text.ParseException;
 
+/**
+ * Controlador para operaciones relacionadas con la gestión de libros en la base de datos.
+ */
 public class LibroController {
 
-    private Connection connection;
+    private final Connection connection;
 
+    /**
+     * Constructor de la clase LibroController.
+     *
+     * @param connection La conexión a la base de datos.
+     */
     public LibroController(Connection connection){
         this.connection = connection;
     }
 
+    /**
+     * Muestra todos los libros disponibles en la base de datos.
+     *
+     * @throws SQLException          Si ocurre un error al ejecutar la consulta SQL.
+     * @throws NumberFormatException Si ocurre un error al convertir datos.
+     */
     public void mostrarLibros() throws SQLException, NumberFormatException{
        Statement statement = connection.createStatement();
        ResultSet resultSet;
@@ -23,6 +35,13 @@ public class LibroController {
        resultSet.close();
     }
 
+    /**
+     * Muestra los libros escritos por un autor específico.
+     *
+     * @throws SQLException          Si ocurre un error al ejecutar la consulta SQL.
+     * @throws NumberFormatException Si ocurre un error al convertir datos.
+     * @throws IOException           Si ocurre un error de entrada/salida.
+     */
     public void mostrarLibrosPorAutor() throws SQLException, NumberFormatException, IOException{
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Statement statement = connection.createStatement();
@@ -37,6 +56,13 @@ public class LibroController {
         resultSet.close();
     }
 
+    /**
+     * Modifica los detalles de un libro específico.
+     *
+     * @throws SQLException          Si ocurre un error al ejecutar la consulta SQL.
+     * @throws NumberFormatException Si ocurre un error al convertir datos.
+     * @throws IOException           Si ocurre un error de entrada/salida.
+     */
     public void modificarLibro() throws SQLException,NumberFormatException, IOException{
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Statement statement = connection.createStatement();
@@ -76,6 +102,13 @@ public class LibroController {
         statement.close();
     }
 
+    /**
+     * Elimina un libro específico de la base de datos.
+     *
+     * @throws SQLException          Si ocurre un error al ejecutar la consulta SQL.
+     * @throws NumberFormatException Si ocurre un error al convertir datos.
+     * @throws IOException           Si ocurre un error de entrada/salida.
+     */
     public void eliminarLibro() throws SQLException,NumberFormatException, IOException{
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("ID del libro a eliminar: ");
