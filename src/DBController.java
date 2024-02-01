@@ -133,8 +133,8 @@ public class DBController {
         CSVReader csvR = new CSVReader(new FileReader("resources/temas_y_libros.csv"));
 
         String[] siguienteLinea;
-        String ordenInsertarTema = "INSERT INTO Temas (nombre_tema) VALUES (?)";
-        PreparedStatement preparedStatement = connection.prepareStatement(ordenInsertarTema);
+        String orden = "INSERT INTO Temas (nombre_tema) VALUES (?)";
+        PreparedStatement preparedStatement = connection.prepareStatement(orden);
 
         while ((siguienteLinea = csvR.readNext()) != null) {
             // Asigna valores desde el archivo CSV
