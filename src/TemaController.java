@@ -29,12 +29,16 @@ public class TemaController {
      */
     public void mostrarTemas()throws SQLException, NumberFormatException{
         Statement statement = connection.createStatement();
-        ResultSet resultSet;
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM temas");
 
-        resultSet = statement.executeQuery("SELECT * FROM Temas");
+        while (resultSet.next()) {
+            String id_tema = resultSet.getString("id_tema");
+            System.out.println(id_tema);
+        }
 
-        statement.close();
+
         resultSet.close();
+        statement.close();
     }
 
     /**
@@ -50,9 +54,9 @@ public class TemaController {
         ResultSet resultSet;
 
         System.out.println("Escriba correctamente el tema literario: ");
-        String nombre_tema = bufferedReader.readLine();
+        String id_tema = bufferedReader.readLine();
 
-        resultSet = statement.executeQuery("SELECT * FROM Libros WHERE nombre_tema LIKE '" + nombre_tema + "'");
+        resultSet = statement.executeQuery("SELECT * FROM libros WHERE id_tema LIKE '" + id_tema + "'");
 
         statement.close();
         resultSet.close();

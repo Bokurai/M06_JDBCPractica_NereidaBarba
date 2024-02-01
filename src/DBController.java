@@ -51,12 +51,11 @@ public class DBController {
     public void crearTablaLibros() throws SQLException {
         String orden = "CREATE TABLE IF NOT EXISTS Libros (\n" +
                 "    id SERIAL PRIMARY KEY,\n" +
-                "    id_tema VARCHAR(255),\n" +
+                "    id_tema VARCHAR(255) REFERENCES temas(id_tema),\n" +
                 "    titulo VARCHAR(255),\n" +
                 "    autor VARCHAR(255),\n" +
                 "    titulo_resumen VARCHAR(255),\n" +
-                "    resumen TEXT,\n" +
-                "    FOREIGN KEY (id_tema) REFERENCES temas(id_tema)\n" +
+                "    resumen TEXT\n" +
                 ");";
 
         Statement statement = connection.createStatement();
@@ -92,10 +91,6 @@ public class DBController {
             e.printStackTrace();
         }
 
-
-
-
-
     }
 
     /**
@@ -111,6 +106,7 @@ public class DBController {
         String[] nextLine;
         String ordenInsertarLibro = "INSERT INTO libros (id_tema, titulo, autor, titulo_resumen, resumen) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(ordenInsertarLibro);
+
 
         while ((nextLine = csvR.readNext()) != null) {
             String tema_id = nextLine[0];

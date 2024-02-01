@@ -26,13 +26,22 @@ public class LibroController {
      * @throws NumberFormatException Si ocurre un error al convertir datos.
      */
     public void mostrarLibros() throws SQLException, NumberFormatException{
-       Statement statement = connection.createStatement();
-       ResultSet resultSet;
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM libros");
 
-       resultSet = statement.executeQuery("SELECT * FROM Libros");
+        while (resultSet.next()) {
+            String id_tema = resultSet.getString("id_tema");
+            String titulo = resultSet.getString("titulo");
+            String autor = resultSet.getString("autor");
+            String titulo_resumen = resultSet.getString("titulo_resumen");
+            String resumen = resultSet.getString("resumen");
 
-       statement.close();
-       resultSet.close();
+            System.out.println("Tema: " + id_tema + ", Título: " + titulo + ", Autor: " + autor +
+                    ", Título Resumen: " + titulo_resumen + ", Resumen: " + resumen);
+        }
+
+        resultSet.close();
+        statement.close();
     }
 
     /**
@@ -50,7 +59,7 @@ public class LibroController {
         System.out.println("Escriba correctamente el nombre del autor: ");
         String nombreautor = bufferedReader.readLine();
 
-        resultSet = statement.executeQuery("SELECT * FROM Libros WHERE autor LIKE '" + nombreautor + "'");
+        resultSet = statement.executeQuery("SELECT * FROM libros WHERE autor LIKE '" + nombreautor + "'");
 
         statement.close();
         resultSet.close();
@@ -115,7 +124,7 @@ public class LibroController {
 
         int id = Integer.parseInt(bufferedReader.readLine());
 
-        String orden = "DELETE FROM Libros WHERE ide = ?";
+        String orden = "DELETE FROM libros WHERE id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(orden);
 
         int registroElim = preparedStatement.executeUpdate();
