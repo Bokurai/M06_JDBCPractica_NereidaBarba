@@ -49,7 +49,7 @@ public class LecturaliaMenu {
             }
 
         }
-        while (op > 0 && op < 13);
+        while (op < 1 || op > 10);
         return op;
     }
 

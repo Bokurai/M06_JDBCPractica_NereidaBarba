@@ -51,13 +51,13 @@ public class DBController {
     public void crearTablaLibros() throws SQLException {
         String orden = "CREATE TABLE IF NOT EXISTS Libros (\n" +
                 "    id SERIAL PRIMARY KEY,\n" +
-                "    tema_id VARCHAR(255),\n" +
+                "    id_tema VARCHAR(255),\n" +
                 "    titulo VARCHAR(255),\n" +
                 "    autor VARCHAR(255),\n" +
                 "    titulo_resumen VARCHAR(255),\n" +
                 "    resumen TEXT,\n" +
-                "    FOREIGN KEY (tema_id) REFERENCES Temas(nombre_tema)\n" +
-                ")";
+                "    FOREIGN KEY (id_tema) REFERENCES temas(id_tema)\n" +
+                ");";
 
         Statement statement = connection.createStatement();
         statement.executeUpdate(orden);
@@ -72,17 +72,30 @@ public class DBController {
      *
      * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
-    public void crearTablaTemas() throws SQLException {
-        String orden = "CREATE TABLE IF NOT EXISTS Temas (\n" +
-                "    nombre_tema VARCHAR(255) PRIMARY KEY\n" +
-                ")";
+    public void crearTablaTemas() {
+        System.out.println("uwu.");
+        String orden = "CREATE TABLE IF NOT EXISTS temas (\n" +
+                "id_tema VARCHAR(255) PRIMARY KEY\n" +
+                ");";
 
-        Statement statement = connection.createStatement();
-        statement.executeUpdate(orden);
+        System.out.println("owo");
+        PreparedStatement statement = null;
+        System.out.println("awa");
+        try {
+            statement = connection.prepareStatement(orden);
+            System.out.println("ewe");
+            statement.executeUpdate();
+            System.out.println("Se ha creado la tabla Temas.");
 
-        System.out.println("Se ha creado la tabla Temas.");
+            statement.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
-        statement.close();
+
+
+
+
     }
 
     /**
@@ -96,7 +109,7 @@ public class DBController {
         CSVReader csvR = new CSVReader(new FileReader("resources/temas_y_libros.csv"));
 
         String[] nextLine;
-        String ordenInsertarLibro = "INSERT INTO Libros (titulo, autor, titulo_resumen, resumen, tema_id) VALUES (?, ?, ?, ?, ?)";
+        String ordenInsertarLibro = "INSERT INTO libros (id_tema, titulo, autor, titulo_resumen, resumen) VALUES (?, ?, ?, ?, ?)";
         PreparedStatement preparedStatement = connection.prepareStatement(ordenInsertarLibro);
 
         while ((nextLine = csvR.readNext()) != null) {
@@ -130,10 +143,10 @@ public class DBController {
      * @throws IOException          Si ocurre un error de entrada/salida.
      */
     public void poblarTablaTemas() throws CsvValidationException, IOException, SQLException {
-        CSVReader csvR = new CSVReader(new FileReader("resources/temas_y_libros.csv"));
+        CSVReader csvR = new CSVReader(new FileReader("resources/temas_y_categoria.csv"));
 
         String[] siguienteLinea;
-        String orden = "INSERT INTO Temas (nombre_tema) VALUES (?)";
+        String orden = "INSERT INTO temas (id_tema) VALUES (?)";
         PreparedStatement preparedStatement = connection.prepareStatement(orden);
 
         while ((siguienteLinea = csvR.readNext()) != null) {
