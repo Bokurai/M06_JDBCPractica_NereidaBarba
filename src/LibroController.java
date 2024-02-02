@@ -36,8 +36,7 @@ public class LibroController {
             String titulo_resumen = resultSet.getString("titulo_resumen");
             String resumen = resultSet.getString("resumen");
 
-            System.out.println("Tema: " + id_tema + ", Título: " + titulo + ", Autor: " + autor +
-                    ", Título Resumen: " + titulo_resumen + ", Resumen: " + resumen);
+            System.out.println(id_tema + "\n" + titulo + "\n" + autor +  "\n" + titulo_resumen + "\n" + resumen + "\n✎✧˚ ༘ ⋆｡˚ ✎✧˚ ༘ ⋆｡");
         }
 
         resultSet.close();
@@ -60,6 +59,13 @@ public class LibroController {
         String nombreautor = bufferedReader.readLine();
 
         resultSet = statement.executeQuery("SELECT * FROM libros WHERE autor LIKE '" + nombreautor + "'");
+        while (resultSet.next()){
+            String titulo = resultSet.getString("titulo");
+            String titulo_resumen = resultSet.getString("titulo_resumen");
+            String resumen = resultSet.getString("resumen");
+
+            System.out.println(titulo + "\n" + titulo_resumen + "\n" + resumen + "\n✎✧˚ ༘ ⋆｡˚ ✎✧˚ ༘ ⋆｡");
+        }
 
         statement.close();
         resultSet.close();
@@ -98,7 +104,6 @@ public class LibroController {
         preparedStatement.setString(2, autor);
         preparedStatement.setString(3, titulo_resumen);
         preparedStatement.setString(4, resumen);
-        preparedStatement.setInt(5, id);
 
         int registroMod = preparedStatement.executeUpdate();
 

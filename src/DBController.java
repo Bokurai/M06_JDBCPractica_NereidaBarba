@@ -61,7 +61,7 @@ public class DBController {
         Statement statement = connection.createStatement();
         statement.executeUpdate(orden);
 
-        System.out.println("Se ha creado la tabla Libros.");
+        System.out.println("Se ha creado la tabla libros.");
 
         statement.close();
     }
@@ -72,19 +72,16 @@ public class DBController {
      * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
     public void crearTablaTemas() {
-        System.out.println("uwu.");
         String orden = "CREATE TABLE IF NOT EXISTS temas (\n" +
                 "id_tema VARCHAR(255) PRIMARY KEY\n" +
                 ");";
 
-        System.out.println("owo");
         PreparedStatement statement = null;
-        System.out.println("awa");
+
         try {
             statement = connection.prepareStatement(orden);
-            System.out.println("ewe");
             statement.executeUpdate();
-            System.out.println("Se ha creado la tabla Temas.");
+            System.out.println("Se ha creado la tabla temas.");
 
             statement.close();
         } catch (SQLException e) {
@@ -126,7 +123,7 @@ public class DBController {
         }
 
         preparedStatement.executeBatch();
-
+        System.out.println("Se ha poblado la tabla libros con los datos correspondientes.");
         csvR.close();
         preparedStatement.close();
     }
@@ -154,6 +151,7 @@ public class DBController {
             preparedStatement.executeUpdate();
         }
 
+        System.out.println("Se ha poblado la tabla temas con los datos correspondientes.");
         csvR.close();
         preparedStatement.close();
     }

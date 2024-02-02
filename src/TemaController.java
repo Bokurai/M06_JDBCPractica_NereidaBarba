@@ -57,7 +57,10 @@ public class TemaController {
         String id_tema = bufferedReader.readLine();
 
         resultSet = statement.executeQuery("SELECT * FROM libros WHERE id_tema LIKE '" + id_tema + "'");
-
+        while (resultSet.next()){
+            String nombre_libro = resultSet.getString("titulo");
+            System.out.println(nombre_libro);
+        }
         statement.close();
         resultSet.close();
     }
