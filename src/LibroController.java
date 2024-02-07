@@ -72,6 +72,49 @@ public class LibroController {
     }
 
     /**
+     * Crea un registro nuevo de un libro en la base de datos
+     *
+     * @throws SQLException          Si ocurre un error al ejecutar la consulta SQL.
+     * @throws NumberFormatException Si ocurre un error al convertir datos.
+     * @throws IOException           Si ocurre un error de entrada/salida.
+     */
+    public void insertarLibro() throws SQLException,NumberFormatException, IOException{
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        Statement statement = connection.createStatement();
+
+        System.out.println("Escriba el título del libro:" );
+        String titulo = bufferedReader.readLine();
+
+        System.out.println("Escriba el autor del libro: ");
+        String autor = bufferedReader.readLine();
+
+        System.out.println("Escriba el título del resumen: ");
+        String titulo_resumen = bufferedReader.readLine();
+
+        System.out.println("Escriba el resumen del libro:");
+        String resumen = bufferedReader.readLine();
+
+        String orden = "INSERT INTO libros VALUES(?,?,?,?);";
+        PreparedStatement preparedStatement = connection.prepareStatement(orden);
+
+        preparedStatement.setString(1, titulo);
+        preparedStatement.setString(2, autor);
+        preparedStatement.setString(3, titulo_resumen);
+        preparedStatement.setString(4, resumen);
+
+        int registroNuevo = preparedStatement.executeUpdate();
+
+        if (registroNuevo > 0) {
+            System.out.println("Se ha añadido el libro a la biblioteca");
+        } else {
+            System.out.println("No se pudo añadir el libro, por favor compruebe que ha escrito bien la información.");
+        }
+        preparedStatement.close();
+        statement.close();
+    }
+
+
+    /**
      * Modifica los detalles de un libro específico.
      *
      * @throws SQLException          Si ocurre un error al ejecutar la consulta SQL.
@@ -97,7 +140,7 @@ public class LibroController {
         System.out.println("Escriba el nuevo resumen del libro:");
         String resumen = bufferedReader.readLine();
 
-        String orden = "UPDATE Libros SET titulo = ?, autor = ?, titulo_resumen = ?, resumen = ? WHERE id = ?";
+        String orden = "UPDATE libros SET titulo = ?, autor = ?, titulo_resumen = ?, resumen = ? WHERE id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(orden);
 
         preparedStatement.setString(1, titulo);
