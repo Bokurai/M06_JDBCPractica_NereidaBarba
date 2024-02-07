@@ -65,5 +65,4 @@ public class TemaController {
         resultSet.close();
     }
 
-
 }
