@@ -132,12 +132,42 @@ public class LibroController {
         String orden = "DELETE FROM libros WHERE id = ?";
         PreparedStatement preparedStatement = connection.prepareStatement(orden);
 
+        preparedStatement.setInt(1, id);
+
         int registroElim = preparedStatement.executeUpdate();
 
         if (registroElim > 0) {
             System.out.println("Se ha eliminado el libro.");
         } else {
             System.out.println("No se pudo eliminar.");
+        }
+        preparedStatement.close();
+    }
+
+    /**
+     * Elimina todos los libros de la base de datos, ponoendo como condición el autor de los mismos.
+     *
+     * @throws SQLException          Si ocurre un error al ejecutar la consulta SQL.
+     * @throws NumberFormatException Si ocurre un error al convertir datos.
+     * @throws IOException           Si ocurre un error de entrada/salida.
+     */
+    public void eliminarLibrosAutor() throws SQLException,NumberFormatException, IOException{
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Diga el autor del cual quiera eliminar los libros, poniendo nombre y apellido entre comillas: ");
+
+        String autor = bufferedReader.readLine();
+
+        String orden = "DELETE FROM libros WHERE autor = ?  RETURNING *";
+        PreparedStatement preparedStatement = connection.prepareStatement(orden);
+
+        preparedStatement.setString(1, autor);
+
+        int registroElim = preparedStatement.executeUpdate();
+
+        if (registroElim > 0) {
+            System.out.println("Se ha/n eliminado el/los libro/s.");
+        } else {
+            System.out.println("No se pudo/pudieron eliminar.");
         }
         preparedStatement.close();
     }
