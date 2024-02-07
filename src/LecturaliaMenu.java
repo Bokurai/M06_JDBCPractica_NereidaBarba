@@ -36,11 +36,13 @@ public class LecturaliaMenu {
             System.out.println("˚ ༘ ⋆｡MODIFICACIÓN/ELIMINACIÓN˚ ༘ ⋆｡");
             System.out.println("5. Escoger un libro y modificar su información");
             System.out.println("6. Eliminar información de un libro\n");
+            System.out.println("7. Eliminar todos los libros de un autor");
+            System.out.println("8. Añadir un libro nuevo a la Biblioteca");
             System.out.println("˚ ༘ ⋆｡RESTABLECIMIENTO˚ ༘ ⋆｡");
-            System.out.println("7. Borrar tablas de la Biblioteca Digital");
-            System.out.println("8. Crear tablas de la Biblioteca Digital");
-            System.out.println("9. Poblar las tablas con datos\n");
-            System.out.println("10. Salir");
+            System.out.println("9. Borrar tablas de la Biblioteca Digital");
+            System.out.println("10. Crear tablas de la Biblioteca Digital");
+            System.out.println("11. Poblar las tablas con datos\n");
+            System.out.println("12. Salir");
             try {
                 op = Integer.parseInt(lector.readLine());
             } catch (IOException e) {
@@ -49,7 +51,7 @@ public class LecturaliaMenu {
             }
 
         }
-        while (op < 1 || op > 10);
+        while (op < 1 || op > 12);
         return op;
     }
 

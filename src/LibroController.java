@@ -9,6 +9,7 @@ import java.sql.*;
 public class LibroController {
 
     private final Connection connection;
+    private TemaController temaController;
 
     /**
      * Constructor de la clase LibroController.
@@ -27,16 +28,17 @@ public class LibroController {
      */
     public void mostrarLibros() throws SQLException, NumberFormatException{
         Statement statement = connection.createStatement();
-        ResultSet resultSet = statement.executeQuery("SELECT * FROM libros");
+        ResultSet resultSet = statement.executeQuery("SELECT * FROM libros ORDER BY id");
 
         while (resultSet.next()) {
+            String id = resultSet.getString("id");
             String id_tema = resultSet.getString("id_tema");
             String titulo = resultSet.getString("titulo");
             String autor = resultSet.getString("autor");
             String titulo_resumen = resultSet.getString("titulo_resumen");
             String resumen = resultSet.getString("resumen");
 
-            System.out.println(id_tema + "\n" + titulo + "\n" + autor +  "\n" + titulo_resumen + "\n" + resumen + "\n✎✧˚ ༘ ⋆｡˚ ✎✧˚ ༘ ⋆｡");
+            System.out.println(id + "\n" + id_tema + "\n" + titulo + "\n" + autor +  "\n" + titulo_resumen + "\n" + resumen + "\n✎✧˚ ༘ ⋆｡˚ ✎✧˚ ༘ ⋆｡");
         }
 
         resultSet.close();
@@ -82,6 +84,9 @@ public class LibroController {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         Statement statement = connection.createStatement();
 
+        System.out.println("Escriba el tema del libro \n");
+        String id_tema = bufferedReader.readLine();
+
         System.out.println("Escriba el título del libro:" );
         String titulo = bufferedReader.readLine();
 
@@ -94,13 +99,15 @@ public class LibroController {
         System.out.println("Escriba el resumen del libro:");
         String resumen = bufferedReader.readLine();
 
-        String orden = "INSERT INTO libros VALUES(?,?,?,?);";
+        String orden = "INSERT INTO libros (id_tema, titulo, autor, titulo_resumen, resumen) VALUES(?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(orden);
 
-        preparedStatement.setString(1, titulo);
-        preparedStatement.setString(2, autor);
-        preparedStatement.setString(3, titulo_resumen);
-        preparedStatement.setString(4, resumen);
+        //preparedStatement.setInt(1);
+        preparedStatement.setString(1, id_tema);
+        preparedStatement.setString(2, titulo);
+        preparedStatement.setString(3, autor);
+        preparedStatement.setString(4, titulo_resumen);
+        preparedStatement.setString(5, resumen);
 
         int registroNuevo = preparedStatement.executeUpdate();
 
@@ -147,6 +154,7 @@ public class LibroController {
         preparedStatement.setString(2, autor);
         preparedStatement.setString(3, titulo_resumen);
         preparedStatement.setString(4, resumen);
+        preparedStatement.setInt(5, id);
 
         int registroMod = preparedStatement.executeUpdate();
 
@@ -200,7 +208,7 @@ public class LibroController {
 
         String autor = bufferedReader.readLine();
 
-        String orden = "DELETE FROM libros WHERE autor = ?  RETURNING *";
+        String orden = "DELETE FROM libros WHERE autor = ? ";
         PreparedStatement preparedStatement = connection.prepareStatement(orden);
 
         preparedStatement.setString(1, autor);

@@ -26,7 +26,7 @@ public class LecturaliaMain {
         DBController dbController = new DBController(c);
 
         int op = lecturaliaMenu.menuPrincipal();
-        while (op >= 0 && op < 11){
+        while (op >= 0 && op < 13){
             switch (op) {
                 case 1:
                     libroController.mostrarLibros();
@@ -37,6 +37,8 @@ public class LecturaliaMain {
                     break;
 
                 case 3:
+                    System.out.println("Aquí tiene los temas disponibles:");
+                    temaController.mostrarTemas();
                     temaController.mostrarLibrosPorTema();
                     break;
 
@@ -53,23 +55,33 @@ public class LecturaliaMain {
                     break;
 
                 case 7:
-                    dbController.borrarTablas();
+                    libroController.eliminarLibrosAutor();
                     break;
 
                 case 8:
+                    System.out.println("Aquí tiene los temas disponibles:");
+                    temaController.mostrarTemas();
+                   libroController.insertarLibro();
+                    break;
+
+                case 9:
+                    dbController.borrarTablas();
+                    break;
+
+                case 10:
                     dbController.crearTablaTemas();
                     dbController.crearTablaLibros();
                     break;
 
-                case 9:
+                case 11:
                     dbController.poblarTablaTemas();
                     dbController.poblarTablaLibros();
                     break;
 
-                case 10:
+                case 12:
                     break;
                 default:
-                    System.out.println("No es valido");
+                    System.out.println("No es válido");
                     break;
             }
             op = lecturaliaMenu.menuPrincipal();
