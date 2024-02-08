@@ -57,7 +57,14 @@ public class LibroController {
         Statement statement = connection.createStatement();
         ResultSet resultSet;
 
-        System.out.println("Escriba correctamente el nombre del autor: ");
+        System.out.println("Aquí la lista de autores: \n");
+        resultSet = statement.executeQuery("SELECT DISTINCT autor FROM libros ORDER BY autor ASC");
+        while (resultSet.next()){
+            String autor = resultSet.getString("autor");
+            System.out.println(autor);
+        }
+
+        System.out.println("\nEscriba correctamente el nombre del autor: ");
         String nombreautor = bufferedReader.readLine();
 
         resultSet = statement.executeQuery("SELECT * FROM libros WHERE autor LIKE '" + nombreautor + "'");
