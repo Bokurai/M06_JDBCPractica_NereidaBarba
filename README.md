@@ -1,7 +1,8 @@
-# Biblioteca Digital Lecturalia
+# Biblioteca Digital Lecturalia[JDBC]
 
 El proyecto en cuestión es el resultado de integrar los datos que ya se tenían de 
 la práctica con Selenium en una base de datos alojada remotamente, usando Vagrant.
+Como enlace entre la IDE y PostgreSQL se ha utilizado JDBC
 
 ## Requisitos
 
