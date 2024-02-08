@@ -143,7 +143,7 @@ public class DBController {
         PreparedStatement preparedStatement = connection.prepareStatement(orden);
 
         while ((siguienteLinea = csvR.readNext()) != null) {
-            // Asigna valores desde el archivo CSV
+
             String nombre_tema = siguienteLinea[0];
 
             preparedStatement.setString(1, nombre_tema);

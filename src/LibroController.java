@@ -62,11 +62,12 @@ public class LibroController {
 
         resultSet = statement.executeQuery("SELECT * FROM libros WHERE autor LIKE '" + nombreautor + "'");
         while (resultSet.next()){
+            String tema = resultSet.getString("id_tema");
             String titulo = resultSet.getString("titulo");
             String titulo_resumen = resultSet.getString("titulo_resumen");
             String resumen = resultSet.getString("resumen");
 
-            System.out.println(titulo + "\n" + titulo_resumen + "\n" + resumen + "\n✎✧˚ ༘ ⋆｡˚ ✎✧˚ ༘ ⋆｡");
+            System.out.println(tema + "\n" + titulo + "\n" + titulo_resumen + "\n" + resumen + "\n✎✧˚ ༘ ⋆｡˚ ✎✧˚ ༘ ⋆｡");
         }
 
         statement.close();
@@ -102,20 +103,14 @@ public class LibroController {
         String orden = "INSERT INTO libros (id_tema, titulo, autor, titulo_resumen, resumen) VALUES(?,?,?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(orden);
 
-        //preparedStatement.setInt(1);
         preparedStatement.setString(1, id_tema);
         preparedStatement.setString(2, titulo);
         preparedStatement.setString(3, autor);
         preparedStatement.setString(4, titulo_resumen);
         preparedStatement.setString(5, resumen);
 
-        int registroNuevo = preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
 
-        if (registroNuevo > 0) {
-            System.out.println("Se ha añadido el libro a la biblioteca");
-        } else {
-            System.out.println("No se pudo añadir el libro, por favor compruebe que ha escrito bien la información.");
-        }
         preparedStatement.close();
         statement.close();
     }
@@ -156,13 +151,8 @@ public class LibroController {
         preparedStatement.setString(4, resumen);
         preparedStatement.setInt(5, id);
 
-        int registroMod = preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
 
-        if (registroMod > 0) {
-            System.out.println("Se han modificado las propiedades del libro.");
-        } else {
-            System.out.println("No se pudo modificar el libro, por favor compruebe que ha escrito bien la información.");
-        }
         preparedStatement.close();
         statement.close();
     }
@@ -185,13 +175,8 @@ public class LibroController {
 
         preparedStatement.setInt(1, id);
 
-        int registroElim = preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
 
-        if (registroElim > 0) {
-            System.out.println("Se ha eliminado el libro.");
-        } else {
-            System.out.println("No se pudo eliminar.");
-        }
         preparedStatement.close();
     }
 
@@ -204,7 +189,7 @@ public class LibroController {
      */
     public void eliminarLibrosAutor() throws SQLException,NumberFormatException, IOException{
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Diga el autor del cual quiera eliminar los libros, poniendo nombre y apellido entre comillas: ");
+        System.out.println("Diga el autor del cual quiera eliminar los libros, con nombre y apellidos ");
 
         String autor = bufferedReader.readLine();
 
@@ -213,13 +198,9 @@ public class LibroController {
 
         preparedStatement.setString(1, autor);
 
-        int registroElim = preparedStatement.executeUpdate();
+        preparedStatement.executeUpdate();
 
-        if (registroElim > 0) {
-            System.out.println("Se ha/n eliminado el/los libro/s.");
-        } else {
-            System.out.println("No se pudo/pudieron eliminar.");
-        }
+
         preparedStatement.close();
     }
 }
