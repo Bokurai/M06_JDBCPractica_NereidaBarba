@@ -14,4 +14,4 @@ la práctica con Selenium en una base de datos alojada remotamente, usando Vagra
    que es el que se ha usado para crear el proyecto) y ejecuta el archivo LecturaliaMain.java
 
 ## Documentación
-La documentación de este proyecto está disponible [en este enlace](javadoc/allpackages-index.html).
+La documentación de este proyecto está disponible [en este enlace](docs/allpackages-index.html).
